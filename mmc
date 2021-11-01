@@ -1,0 +1,132 @@
+using System;
+
+namespace mmc3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] fator = new int[5];
+            int divisor = 2;
+            int resultado = 1;
+            int contador = 0;
+            int numerador = 0;
+
+            Console.WriteLine("Entre com os fatores:");
+
+            //entrar com os fatores
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("{0}° fator: \n", i + 1);
+                fator[i] = Convert.ToInt32(Console.ReadLine());
+                if (fator[i] == 0)
+                {
+                    fator[i]++;
+                }
+            }
+
+            //mostrar fatores inseridos
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("vetores inseridos: {0} \n", fator[i]);
+            }
+
+            do
+            {
+                //verificar se ao menos um fator é divisível pela variável divisor
+                numerador = 0;
+                contador = 0;
+                for (int i = 0; i < 1; i++)
+                {
+
+                    if ((fator[0] % divisor == 0) || (fator[1] % divisor == 0) || (fator[2] % divisor == 0) ||
+                    (fator[3] % divisor == 0) || (fator[4] % divisor == 0))
+                    {
+                        contador++;
+                        Console.WriteLine("\n Ao menos 1 número é divisível por {0} \n", divisor);
+                    }
+
+                    else
+                    {
+
+                        contador--;
+                        Console.WriteLine("\n Não há divisores por {0} \n", divisor);
+
+                    }
+
+                }
+
+                //verificar se todos os números são iguais a 1
+                if (contador < 0)
+                {
+                    if ((fator[0] == 1) && (fator[1] == 1) && (fator[2] == 1) &&
+                    (fator[3] == 1) && (fator[4] == 1))
+                    {
+
+                        Console.WriteLine("\n Todos os fatores são iguais a 1 \n Fim de programa \n");
+                        break;
+
+                    }
+
+                }
+
+                //verificar se a divisão de todos os fatores são diferentes de 0
+                if (contador < 0)
+                {
+
+                    if ((fator[0] % divisor != 0) && (fator[1] % divisor != 0) && (fator[2] % divisor != 0) &&
+                        (fator[3] % divisor != 0) && (fator[4] % divisor != 0))
+                    {
+
+                        Console.WriteLine("a divisão de todos os fatores é diferente de zero");
+                        contador = contador + 2;
+                        divisor++;
+
+                    }
+
+                }
+                
+                //fatorar
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (fator[i] % divisor == 0)
+                        {
+
+                            Console.WriteLine("\n É divisível por {0}: {1} \n", divisor, fator[i]);
+                            fator[i] = fator[i] / divisor;
+                            numerador++;
+
+                        }
+
+                        else
+                        {
+
+                            Console.WriteLine("\n Não é divisível por {0}: {1} \n", divisor, fator[i]);
+                            fator[i] = fator[i];
+                            numerador--;
+
+                        }
+
+                    }
+
+                //verificar se o numerador é igual a 5
+                if (numerador == 5)
+                {
+                    Console.WriteLine("Todos os fatores são divísiveis por {0}", divisor);
+                }
+
+                Console.WriteLine("\n Contador: {0} \n", contador);
+
+                if (contador > 0 && numerador != -5)
+                {
+                    resultado *= divisor;
+                }
+
+            } while (contador > 0);
+
+            Console.WriteLine("\n O MMC é: {0} \n", resultado);
+            
+            Console.ReadKey();
+        }
+    }
+}
